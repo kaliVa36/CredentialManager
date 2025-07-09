@@ -23,6 +23,7 @@ fun NavHost(navController: NavHostController) {
                 loginData = loginData,
                 onEmailChange = { viewModel.email(it)},
                 onPasswordChange =  viewModel::password,
+                onGoogleSignInClicked = viewModel::googleSignIn,
             )
         }
     }

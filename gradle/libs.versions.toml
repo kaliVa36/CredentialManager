@@ -16,6 +16,9 @@ koin_compose_version = "3.5.0"
 # Firebase
 firebase_version = "33.16.0"
 google_services_version = "4.4.3"
+# Google auth
+credentials_version = "1.5.0"
+googleid_version = "1.1.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,12 +41,12 @@ accompanist-navigation-animation = { group = "com.google.accompanist", name = "a
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin_bom_version" }
 koin-core = { module = "io.insert-koin:koin-core" }
 koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin_compose_version"}
-# Firebase
-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase_version" }
-firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
+# Google auth
+credentials = { module = "androidx.credentials:credentials", version.ref = "credentials_version" }
+credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentials_version" }
+googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "googleid_version" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-google-services = { id = "com.google.gms.google-services", version.ref = "google_services_version"}
