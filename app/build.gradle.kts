@@ -63,4 +63,6 @@ dependencies {
     implementation(libs.credentials)
     implementation(libs.credentials.play.services.auth)
     implementation(libs.googleid)
+    // Coil
+    implementation(libs.coil.compose)
 }

@@ -30,16 +30,47 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.os.bundleOf
+import androidx.navigation.NavHostController
+import androidx.navigation.navOptions
 import com.sample.credentialmanager.R
+import com.sample.credentialmanager.ui.feature.navigation.Arguments
+import com.sample.credentialmanager.ui.feature.navigation.Screens
+import com.sample.credentialmanager.ui.feature.navigation.navigate
 
 @Composable
 fun LoginScreen(
     loginData: LoginData,
     onEmailChange: (String) -> Unit,
     onPasswordChange: (String) -> Unit,
-    onGoogleSignInClicked: (Context) -> Unit
+    onGoogleSignInClicked: (Context) -> Unit,
+    navHostController: NavHostController,
+    resetState: () -> Unit,
 ) {
     val context = LocalContext.current
+
+    when (loginData.navigationState) {
+        NavigationState.Home -> {
+            resetState()
+            navHostController.currentBackStackEntry?.destination?.parent?.id?.let { parentGraph ->
+                navHostController.navigate(
+                    route = Screens.HOME,
+                    args = bundleOf(
+                        Arguments.PROFILE_PICTURE_URL to loginData.googleProfilePictureUrl,
+                        Arguments.NAME to loginData.name,
+                    ), navOptions = navOptions {
+                        popUpTo(
+                            id = parentGraph,
+                            popUpToBuilder = { inclusive = true }
+                        )
+                        launchSingleTop = true
+                    }
+                )
+            }
+        }
+
+        NavigationState.None -> {}
+    }
 
     Column(
         modifier = Modifier.fillMaxSize(),

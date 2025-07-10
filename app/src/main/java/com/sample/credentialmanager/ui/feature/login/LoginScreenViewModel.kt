@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class LoginScreenViewModel: ViewModel() {
+class LoginScreenViewModel : ViewModel() {
     private val _loginData = MutableStateFlow(LoginData("", ""))
     val loginData = _loginData.asStateFlow()
 
@@ -27,6 +27,10 @@ class LoginScreenViewModel: ViewModel() {
 
     fun password(text: String) {
         _loginData.update { it.copy(password = text) }
+    }
+
+    fun resetState() {
+        _loginData.update { it.copy(navigationState = NavigationState.None) }
     }
 
     fun googleSignIn(context: Context) {
@@ -55,6 +59,13 @@ class LoginScreenViewModel: ViewModel() {
                             try {
                                 val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
 
+                                _loginData.update { state ->
+                                    state.copy(
+                                        name = "${googleIdTokenCredential.givenName} ${googleIdTokenCredential.familyName}",
+                                        googleProfilePictureUrl = googleIdTokenCredential.profilePictureUri.toString(),
+                                        navigationState = NavigationState.Home,
+                                    )
+                                }
                                 Log.e("TAG", "Success ${googleIdTokenCredential.data}")
                             } catch (e: GoogleIdTokenParsingException) {
                                 Log.e("TAG", "Received an invalid google id token response", e)
