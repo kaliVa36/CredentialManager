@@ -9,7 +9,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.sample.credentialmanager"
+        applicationId = "com.credentialmanager.sample"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -53,4 +53,16 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    // Navigation
+    implementation(libs.accompanist.navigation.animation)
+    // Koin
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.core)
+    implementation(libs.koin.compose)
+    // Google auth
+    implementation(libs.credentials)
+    implementation(libs.credentials.play.services.auth)
+    implementation(libs.googleid)
+    // Coil
+    implementation(libs.coil.compose)
 }

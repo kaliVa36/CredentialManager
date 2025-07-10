@@ -7,7 +7,20 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.9.1"
 activityCompose = "1.10.1"
-composeBom = "2024.04.01"
+composeBom = "2025.06.01"
+# Accompanist
+accompanist_version = "0.31.5-beta"
+# Koin bom
+koin_bom_version = "3.5.0"
+koin_compose_version = "3.5.0"
+# Firebase
+firebase_version = "33.16.0"
+google_services_version = "4.4.3"
+# Google auth
+credentials_version = "1.5.0"
+googleid_version = "1.1.1"
+# Coil
+coil_version = "2.6.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -24,9 +37,19 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
-
+# Navigation
+accompanist-navigation-animation = { group = "com.google.accompanist", name = "accompanist-navigation-animation", version.ref = "accompanist_version" }
+# Koin
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin_bom_version" }
+koin-core = { module = "io.insert-koin:koin-core" }
+koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin_compose_version"}
+# Google auth
+credentials = { module = "androidx.credentials:credentials", version.ref = "credentials_version" }
+credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentials_version" }
+googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "googleid_version" }
+# Coil
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil_version"}
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-
